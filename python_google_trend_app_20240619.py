@@ -44,7 +44,7 @@ def display_and_save_with_sat(df):
 
     plt.xlabel('Date')
     plt.ylabel('Share of search')
-    plt.title('Share of Search Over 3 Months')
+    plt.title('Share of Search Over 3 Months (Saturday: red dotted-line)')
     plt.legend()
     plt.show()
     plt.savefig('plot_with_sat.png')
