@@ -1,5 +1,3 @@
-###pip install pytrends
-
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
@@ -15,7 +13,9 @@ pytrend.build_payload(kw_list=KEYWORD_LIST, timeframe=TIMEFRAME)
 df = pytrend.interest_over_time()
 df = df.rename_axis('date').reset_index()
 
-def display(df):
+df = df[df['isPartial'] == False]
+
+def display_and_save(df):
     plt.figure(figsize=(10, 5))
     for keyword in KEYWORD_LIST:
         plt.plot(df['date'], df[keyword], label=keyword)
@@ -25,10 +25,11 @@ def display(df):
     plt.title('Share of Search Over 3 Months')
     plt.legend()
     plt.show()
+    plt.savefig('plot.png')
 
-display(df)
+display_and_save(df)
 
-def display_with_sat(df):
+def display_and_save_with_sat(df):
     plt.figure(figsize=(10, 5))
     for keyword in KEYWORD_LIST:
         plt.plot(df['date'], df[keyword], label=keyword)
@@ -46,5 +47,6 @@ def display_with_sat(df):
     plt.title('Share of Search Over 3 Months')
     plt.legend()
     plt.show()
+    plt.savefig('plot_with_sat.png')
 
-display_with_sat(df)
+display_and_save_with_sat(df)
